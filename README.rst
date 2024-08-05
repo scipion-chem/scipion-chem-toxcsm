@@ -1,5 +1,5 @@
 .. |organization| replace:: scipion-chem
-.. |repository| replace:: scipion-chem-toxCSM
+.. |repository| replace:: scipion-chem-toxcsm
 
 ========================================
 Toxicity prediction of small ligands scipion plugin
@@ -58,4 +58,4 @@ As of today, Scipion does not automatically uninstall the conda enviroments crea
 ========================================
 Changelog
 ========================================
-All the recent version changes can be found `here <https://github.com/scipion-chem/scipion-chem-toxCSM/blob/devel/CHANGES.rst>`_.
+All the recent version changes can be found `here <https://github.com/scipion-chem/scipion-chem-toxcsm/blob/devel/CHANGES.rst>`_.
