@@ -27,11 +27,11 @@ with open('requirements.txt') as f:
 # Arguments marked as "Required" below must be included for upload to PyPI.
 # Fields marked as "Optional" may be commented out.
 setup(
-	name='scipion-chem-toxCSM',  # Required
+	name='scipion-chem-toxcsm',  # Required
 	version=PLUGIN_VERSION,  # Required
 	description='Scipion framework plugin for the use of toxCSM software tool',  # Required
 	long_description=long_description,  # Optional
-	url='https://github.com/scipion-chem/scipion-chem-toxCSM',  # Optional
+	url='https://github.com/scipion-chem/scipion-chem-toxcsm',  # Optional
 	author='Veronica Gamo',  # Optional
 	author_email='veronica.gamoparejo@usp.ceu.es',  # Optional
 	keywords='scipion toxCSM scipion-3.0 cheminformatics',  # Optional
