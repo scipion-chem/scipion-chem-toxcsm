@@ -18,7 +18,103 @@ from pyworkflow.utils.path import moveFile
 
 class ProtChemToxCSM(EMProtocol):
 
-    """Toxicity prediction of small ligands with toxCSM"""
+    """Toxicity prediction of small ligands with toxCSM
+    
+    AI Generated:
+
+        ProtChemToxCSM - User Manual
+
+        Overview
+        --------
+        The ProtChemToxCSM protocol performs structure-based toxicity prediction
+        for small molecules using the toxCSM web service. It applies graph-based
+        signatures and machine learning models to estimate multiple toxicological
+        endpoints directly from the chemical structure of a compound.
+
+        This protocol is designed for early-stage drug discovery workflows, where
+        rapid toxicity screening is essential to prioritize safe and viable
+        candidates before experimental validation.
+
+        Input Requirements
+        ------------------
+        1. **Molecule Set**:
+           - A SetOfSmallMolecules object containing the compounds to analyze.
+           - Molecules must include valid structural information (e.g., SDF, MOL).
+
+        2. **Ligand Selection**:
+           - A specific ligand name must be provided.
+           - The protocol extracts the corresponding molecule from the input set.
+
+        3. **Prediction Type**:
+           - Defines the toxicity category to evaluate:
+             - stress_response
+             - nuclear_response
+             - environmental
+             - organic
+             - human_dose_response
+             - genomic
+             - all (default; runs all available models)
+
+        Workflow
+        --------
+        1. **Ligand selection**:
+           - The protocol searches the input molecule set for the selected ligand.
+           - The corresponding structure file is retrieved.
+
+        2. **SMILES generation**:
+           - The molecule is converted into a SMILES representation using RDKit.
+           - This representation is required for toxCSM predictions.
+
+        3. **Job submission**:
+           - The SMILES string and selected prediction type are sent to the toxCSM API.
+           - A unique job ID is returned and stored.
+
+        4. **Job tracking**:
+           - The job ID is saved locally for reproducibility and tracking.
+
+        5. **Result retrieval**:
+           - After a waiting period, results are retrieved from the toxCSM server.
+           - Predictions are returned in JSON format.
+
+        6. **Result storage**:
+           - The retrieved results are saved as a JSON file for downstream analysis.
+
+        Outputs
+        -------
+        - **toxCSM_results.json**:
+          - Contains toxicity predictions for the selected ligand.
+          - Includes probabilities, classifications, or quantitative values
+            depending on the endpoint.
+
+        - **job_id.txt**:
+          - Stores the unique identifier of the submitted toxCSM job.
+          - Useful for reproducibility and external tracking.
+
+        Validation & Warnings
+        ---------------------
+        - Ensure that the selected ligand exists in the input molecule set.
+        - Molecule files must be structurally valid for SMILES conversion.
+        - Internet connection is required to access the toxCSM API.
+        - If the API request fails, the protocol raises an exception.
+        - The waiting time for results is fixed and may not reflect actual
+          server processing time.
+
+        Practical Recommendations
+        -------------------------
+        - Use the "all" prediction type for a comprehensive toxicity profile.
+        - Use specific prediction types to reduce runtime and focus analysis.
+        - Verify SMILES correctness if unexpected results occur.
+        - Combine toxicity results with docking, ADMET, or activity predictions
+          for better compound prioritization.
+
+        Final Perspective
+        -----------------
+        ProtChemToxCSM provides a fast and automated way to assess the
+        toxicological risk of small molecules using structure-based predictions.
+        By integrating toxCSM into Scipion-Chem workflows, users can efficiently
+        filter unsafe compounds and support decision-making in computational
+        drug discovery pipelines.
+    """
     
     _label = 'toxicity prediction of small ligands'
     def __init__(self, **kwargs):
